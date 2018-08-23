@@ -6,7 +6,7 @@ Provides an OpenAPI service that serves a fake BRP (Basisregistratie Personen) i
 The goal of this service is to be able to model government processes around it that use this during an upcoming VNG fieldlab in Zwolle end Septemer 2018.
 
 More information on the model used for BRP can be found at: 
-https://github.com/VNG-Realisatie/gemma-zaken
+https://github.com/Drechtsteden/API
 
 ## Status of this project
 
