@@ -1,0 +1,649 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "NPS op RaadpleegIngeschrevenPersoonNAW",
+    "description" : "Specificatie RSGB 3.0 Json opvragen NPS",
+    "contact" : { },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://zaaksysteem.greenvalley.nl/bg"
+  } ],
+  "paths" : {
+    "/RaadpleegIngeschrevenPersoonNAW" : {
+      "get" : {
+        "summary" : "Raadpleeg ingeschreven persoon NAW",
+        "description" : "Raadpleeg ingeschreven persoon NAW",
+        "parameters" : [ {
+          "name" : "burgerservicenummer",
+          "in" : "query",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "periodevan",
+          "in" : "query",
+          "description" : "periode.van",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "date-time"
+          }
+        }, {
+          "name" : "periodetotEnMet",
+          "in" : "query",
+          "description" : "periode.totEnMet",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "date-time"
+          }
+        }, {
+          "name" : "inclusiefOverledenPersonen",
+          "in" : "query",
+          "description" : "is standaard false, geef waarde 'true' of 'false' mee",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "inclusiefGeheim",
+          "in" : "query",
+          "description" : "is standaard false, geef waarde 'true' of 'false' mee",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "zenderOrganisatie",
+          "in" : "header",
+          "description" : "Organisatiecode van de opvragende organisatie (kan zijn een gemeentecode, RSIN, OIN)",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "zenderApplicatie",
+          "in" : "header",
+          "description" : "Applicatiecode van de opvragende organisatie",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "zenderGebruiker",
+          "in" : "header",
+          "description" : "Organisatiebrede unieke gebruikerIdentificatie",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "zenderAdministratie",
+          "in" : "header",
+          "description" : "Administratie of organisatieonderdeel die gegevens opvraagt",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ontvangerOrganisatie",
+          "in" : "header",
+          "description" : "Organisatiecode van de leverende organisatie (kan zijn een gemeentecode, RSIN, OIN)",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ontvangerApplicatie",
+          "in" : "header",
+          "description" : "Applicatiecode van de leverende organisatie",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ontvangerGebruiker",
+          "in" : "header",
+          "description" : "Organisatiebrede unieke gebruikerIdentificatie",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "ontvangerAdministratie",
+          "in" : "header",
+          "description" : "Administratie of organisatieonderdeel die gegevens levert",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "referentienummer",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "tijdstipbericht",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "entiteittype",
+          "in" : "header",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Gelukt",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/IngeschrevenPersoon"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Persoon" : {
+        "type" : "object",
+        "properties" : {
+          "periodeGeldigheid" : {
+            "$ref" : "#/components/schemas/Persoon_periodeGeldigheid"
+          },
+          "voorlettersAanschrijving" : {
+            "type" : "string"
+          },
+          "voornamen" : {
+            "type" : "string"
+          },
+          "voorvoegselGeslachtsnaam" : {
+            "type" : "string"
+          },
+          "geslachtsnaam" : {
+            "type" : "string"
+          },
+          "geslachtsaanduiding" : {
+            "type" : "string"
+          },
+          "aanschrijfwijze" : {
+            "type" : "string"
+          },
+          "geboortedatum" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "Verblijfsadres" : {
+            "$ref" : "#/components/schemas/Verblijfsadres"
+          },
+          "Adresbuitenland" : {
+            "$ref" : "#/components/schemas/Adresbuitenland"
+          }
+        },
+        "example" : {
+          "voornamen" : "voornamen",
+          "voorlettersAanschrijving" : "voorlettersAanschrijving",
+          "geslachtsaanduiding" : "geslachtsaanduiding",
+          "aanschrijfwijze" : "aanschrijfwijze",
+          "Verblijfsadres" : {
+            "locatiebeschrijving" : "locatiebeschrijving",
+            "naamOpenbareRuimte" : "naamOpenbareRuimte",
+            "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+            "identificatieNummerAanduiding" : 0,
+            "postcode" : "postcode",
+            "huisletter" : "huisletter",
+            "huisnummertoevoeging" : "huisnummertoevoeging",
+            "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+            "woonplaatsnaam" : "woonplaatsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            }
+          },
+          "geslachtsnaam" : "geslachtsnaam",
+          "periodeGeldigheid" : {
+            "van" : "2000-01-23T04:56:07.000+00:00",
+            "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+          },
+          "voorvoegselGeslachtsnaam" : "voorvoegselGeslachtsnaam",
+          "geboortedatum" : "2000-01-23T04:56:07.000+00:00",
+          "Adresbuitenland" : {
+            "landcode" : {
+              "adresBuiteland3" : "adresBuiteland3",
+              "adresBuiteland1" : "adresBuiteland1",
+              "adresBuiteland2" : "adresBuiteland2",
+              "landnaam" : "landnaam"
+            }
+          }
+        }
+      },
+      "IngeschrevenPersoon_overlijden" : {
+        "properties" : {
+          "overlijdenPlaats" : {
+            "type" : "string"
+          },
+          "overlijdenLand" : {
+            "type" : "string"
+          },
+          "overlijdensdatum" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "example" : {
+          "overlijdenPlaats" : "overlijdenPlaats",
+          "overlijdenLand" : "overlijdenLand",
+          "overlijdensdatum" : "2000-01-23T04:56:07.000+00:00"
+        }
+      },
+      "IngeschrevenPersoon" : {
+        "type" : "object",
+        "properties" : {
+          "voorletterAanschrijving" : {
+            "type" : "string"
+          },
+          "voornamen" : {
+            "type" : "string"
+          },
+          "voorvoegselGeslachtnaam" : {
+            "type" : "string"
+          },
+          "geslachtsnaam" : {
+            "type" : "string"
+          },
+          "geslachtsaanduiding" : {
+            "type" : "string"
+          },
+          "aanschrijfwijze" : {
+            "type" : "string"
+          },
+          "geboorteDatum" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "Verblijfsadres" : {
+            "$ref" : "#/components/schemas/Verblijfsadres"
+          },
+          "Adresbuitenland" : {
+            "$ref" : "#/components/schemas/Adresbuitenland"
+          },
+          "burgerservicenummer" : {
+            "type" : "integer"
+          },
+          "aanduidingNaamgebruik" : {
+            "type" : "string"
+          },
+          "aanhefAanschrijving" : {
+            "type" : "string"
+          },
+          "voornamenAanschrijving" : {
+            "type" : "string"
+          },
+          "geslachtsnaamAanschrijving" : {
+            "type" : "string"
+          },
+          "adelijkeTitelOfPredikant" : {
+            "type" : "string"
+          },
+          "geboorteplaats" : {
+            "type" : "string"
+          },
+          "geboorteland" : {
+            "type" : "string"
+          },
+          "ouder" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Persoon"
+            }
+          },
+          "partner" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Persoon"
+            }
+          },
+          "overlijden" : {
+            "$ref" : "#/components/schemas/IngeschrevenPersoon_overlijden"
+          },
+          "telefoonnummer" : {
+            "type" : "string"
+          },
+          "faxnummer" : {
+            "type" : "string"
+          },
+          "emailadres" : {
+            "type" : "string"
+          },
+          "verblijfstitel" : {
+            "$ref" : "#/components/schemas/IngeschrevenPersoon_verblijfstitel"
+          }
+        },
+        "example" : {
+          "verblijfstitel" : {
+            "omschrijving" : "omschrijving",
+            "code" : "code",
+            "beginDatumGeldigheid" : "2000-01-23T04:56:07.000+00:00",
+            "eindDatumGeldigheid" : "2000-01-23T04:56:07.000+00:00"
+          },
+          "voornamenAanschrijving" : "voornamenAanschrijving",
+          "voornamen" : "voornamen",
+          "geslachtsnaamAanschrijving" : "geslachtsnaamAanschrijving",
+          "aanschrijfwijze" : "aanschrijfwijze",
+          "Verblijfsadres" : {
+            "locatiebeschrijving" : "locatiebeschrijving",
+            "naamOpenbareRuimte" : "naamOpenbareRuimte",
+            "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+            "identificatieNummerAanduiding" : 0,
+            "postcode" : "postcode",
+            "huisletter" : "huisletter",
+            "huisnummertoevoeging" : "huisnummertoevoeging",
+            "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+            "woonplaatsnaam" : "woonplaatsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            }
+          },
+          "geslachtsnaam" : "geslachtsnaam",
+          "voorletterAanschrijving" : "voorletterAanschrijving",
+          "faxnummer" : "faxnummer",
+          "aanduidingNaamgebruik" : "aanduidingNaamgebruik",
+          "geboorteDatum" : "2000-01-23T04:56:07.000+00:00",
+          "emailadres" : "emailadres",
+          "geboorteland" : "geboorteland",
+          "adelijkeTitelOfPredikant" : "adelijkeTitelOfPredikant",
+          "overlijden" : {
+            "overlijdenPlaats" : "overlijdenPlaats",
+            "overlijdenLand" : "overlijdenLand",
+            "overlijdensdatum" : "2000-01-23T04:56:07.000+00:00"
+          },
+          "burgerservicenummer" : 1,
+          "telefoonnummer" : "telefoonnummer",
+          "geslachtsaanduiding" : "geslachtsaanduiding",
+          "partner" : [ {
+            "voornamen" : "voornamen",
+            "voorlettersAanschrijving" : "voorlettersAanschrijving",
+            "geslachtsaanduiding" : "geslachtsaanduiding",
+            "aanschrijfwijze" : "aanschrijfwijze",
+            "Verblijfsadres" : {
+              "locatiebeschrijving" : "locatiebeschrijving",
+              "naamOpenbareRuimte" : "naamOpenbareRuimte",
+              "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+              "identificatieNummerAanduiding" : 0,
+              "postcode" : "postcode",
+              "huisletter" : "huisletter",
+              "huisnummertoevoeging" : "huisnummertoevoeging",
+              "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+              "woonplaatsnaam" : "woonplaatsnaam",
+              "periodeGeldigheid" : {
+                "van" : "2000-01-23T04:56:07.000+00:00",
+                "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+              }
+            },
+            "geslachtsnaam" : "geslachtsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            },
+            "voorvoegselGeslachtsnaam" : "voorvoegselGeslachtsnaam",
+            "geboortedatum" : "2000-01-23T04:56:07.000+00:00",
+            "Adresbuitenland" : {
+              "landcode" : {
+                "adresBuiteland3" : "adresBuiteland3",
+                "adresBuiteland1" : "adresBuiteland1",
+                "adresBuiteland2" : "adresBuiteland2",
+                "landnaam" : "landnaam"
+              }
+            }
+          }, {
+            "voornamen" : "voornamen",
+            "voorlettersAanschrijving" : "voorlettersAanschrijving",
+            "geslachtsaanduiding" : "geslachtsaanduiding",
+            "aanschrijfwijze" : "aanschrijfwijze",
+            "Verblijfsadres" : {
+              "locatiebeschrijving" : "locatiebeschrijving",
+              "naamOpenbareRuimte" : "naamOpenbareRuimte",
+              "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+              "identificatieNummerAanduiding" : 0,
+              "postcode" : "postcode",
+              "huisletter" : "huisletter",
+              "huisnummertoevoeging" : "huisnummertoevoeging",
+              "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+              "woonplaatsnaam" : "woonplaatsnaam",
+              "periodeGeldigheid" : {
+                "van" : "2000-01-23T04:56:07.000+00:00",
+                "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+              }
+            },
+            "geslachtsnaam" : "geslachtsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            },
+            "voorvoegselGeslachtsnaam" : "voorvoegselGeslachtsnaam",
+            "geboortedatum" : "2000-01-23T04:56:07.000+00:00",
+            "Adresbuitenland" : {
+              "landcode" : {
+                "adresBuiteland3" : "adresBuiteland3",
+                "adresBuiteland1" : "adresBuiteland1",
+                "adresBuiteland2" : "adresBuiteland2",
+                "landnaam" : "landnaam"
+              }
+            }
+          } ],
+          "aanhefAanschrijving" : "aanhefAanschrijving",
+          "ouder" : [ {
+            "voornamen" : "voornamen",
+            "voorlettersAanschrijving" : "voorlettersAanschrijving",
+            "geslachtsaanduiding" : "geslachtsaanduiding",
+            "aanschrijfwijze" : "aanschrijfwijze",
+            "Verblijfsadres" : {
+              "locatiebeschrijving" : "locatiebeschrijving",
+              "naamOpenbareRuimte" : "naamOpenbareRuimte",
+              "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+              "identificatieNummerAanduiding" : 0,
+              "postcode" : "postcode",
+              "huisletter" : "huisletter",
+              "huisnummertoevoeging" : "huisnummertoevoeging",
+              "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+              "woonplaatsnaam" : "woonplaatsnaam",
+              "periodeGeldigheid" : {
+                "van" : "2000-01-23T04:56:07.000+00:00",
+                "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+              }
+            },
+            "geslachtsnaam" : "geslachtsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            },
+            "voorvoegselGeslachtsnaam" : "voorvoegselGeslachtsnaam",
+            "geboortedatum" : "2000-01-23T04:56:07.000+00:00",
+            "Adresbuitenland" : {
+              "landcode" : {
+                "adresBuiteland3" : "adresBuiteland3",
+                "adresBuiteland1" : "adresBuiteland1",
+                "adresBuiteland2" : "adresBuiteland2",
+                "landnaam" : "landnaam"
+              }
+            }
+          }, {
+            "voornamen" : "voornamen",
+            "voorlettersAanschrijving" : "voorlettersAanschrijving",
+            "geslachtsaanduiding" : "geslachtsaanduiding",
+            "aanschrijfwijze" : "aanschrijfwijze",
+            "Verblijfsadres" : {
+              "locatiebeschrijving" : "locatiebeschrijving",
+              "naamOpenbareRuimte" : "naamOpenbareRuimte",
+              "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+              "identificatieNummerAanduiding" : 0,
+              "postcode" : "postcode",
+              "huisletter" : "huisletter",
+              "huisnummertoevoeging" : "huisnummertoevoeging",
+              "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+              "woonplaatsnaam" : "woonplaatsnaam",
+              "periodeGeldigheid" : {
+                "van" : "2000-01-23T04:56:07.000+00:00",
+                "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+              }
+            },
+            "geslachtsnaam" : "geslachtsnaam",
+            "periodeGeldigheid" : {
+              "van" : "2000-01-23T04:56:07.000+00:00",
+              "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+            },
+            "voorvoegselGeslachtsnaam" : "voorvoegselGeslachtsnaam",
+            "geboortedatum" : "2000-01-23T04:56:07.000+00:00",
+            "Adresbuitenland" : {
+              "landcode" : {
+                "adresBuiteland3" : "adresBuiteland3",
+                "adresBuiteland1" : "adresBuiteland1",
+                "adresBuiteland2" : "adresBuiteland2",
+                "landnaam" : "landnaam"
+              }
+            }
+          } ],
+          "voorvoegselGeslachtnaam" : "voorvoegselGeslachtnaam",
+          "Adresbuitenland" : {
+            "landcode" : {
+              "adresBuiteland3" : "adresBuiteland3",
+              "adresBuiteland1" : "adresBuiteland1",
+              "adresBuiteland2" : "adresBuiteland2",
+              "landnaam" : "landnaam"
+            }
+          },
+          "geboorteplaats" : "geboorteplaats"
+        }
+      },
+      "Verblijfsadres" : {
+        "type" : "object",
+        "properties" : {
+          "periodeGeldigheid" : {
+            "$ref" : "#/components/schemas/Persoon_periodeGeldigheid"
+          },
+          "identificatieNummerAanduiding" : {
+            "type" : "integer"
+          },
+          "postcode" : {
+            "type" : "string"
+          },
+          "huisnummer" : {
+            "type" : "number"
+          },
+          "huisletter" : {
+            "type" : "string"
+          },
+          "huisnummertoevoeging" : {
+            "type" : "string"
+          },
+          "locatiebeschrijving" : {
+            "type" : "string"
+          },
+          "naamOpenbareRuimte" : {
+            "type" : "string"
+          },
+          "woonplaatsnaam" : {
+            "type" : "string"
+          },
+          "woonplaatsIdentificatie" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "locatiebeschrijving" : "locatiebeschrijving",
+          "naamOpenbareRuimte" : "naamOpenbareRuimte",
+          "huisnummer" : 6.02745618307040320615897144307382404804229736328125,
+          "identificatieNummerAanduiding" : 0,
+          "postcode" : "postcode",
+          "huisletter" : "huisletter",
+          "huisnummertoevoeging" : "huisnummertoevoeging",
+          "woonplaatsIdentificatie" : "woonplaatsIdentificatie",
+          "woonplaatsnaam" : "woonplaatsnaam",
+          "periodeGeldigheid" : {
+            "van" : "2000-01-23T04:56:07.000+00:00",
+            "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+          }
+        }
+      },
+      "Persoon_periodeGeldigheid" : {
+        "properties" : {
+          "van" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "totEnMet" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "example" : {
+          "van" : "2000-01-23T04:56:07.000+00:00",
+          "totEnMet" : "2000-01-23T04:56:07.000+00:00"
+        }
+      },
+      "IngeschrevenPersoon_verblijfstitel" : {
+        "properties" : {
+          "omschrijving" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "beginDatumGeldigheid" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "eindDatumGeldigheid" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        },
+        "example" : {
+          "omschrijving" : "omschrijving",
+          "code" : "code",
+          "beginDatumGeldigheid" : "2000-01-23T04:56:07.000+00:00",
+          "eindDatumGeldigheid" : "2000-01-23T04:56:07.000+00:00"
+        }
+      },
+      "Adresbuitenland" : {
+        "type" : "object",
+        "properties" : {
+          "landcode" : {
+            "$ref" : "#/components/schemas/Adresbuitenland_landcode"
+          }
+        },
+        "example" : {
+          "landcode" : {
+            "adresBuiteland3" : "adresBuiteland3",
+            "adresBuiteland1" : "adresBuiteland1",
+            "adresBuiteland2" : "adresBuiteland2",
+            "landnaam" : "landnaam"
+          }
+        }
+      },
+      "Adresbuitenland_landcode" : {
+        "properties" : {
+          "adresBuiteland3" : {
+            "type" : "string"
+          },
+          "adresBuiteland1" : {
+            "type" : "string"
+          },
+          "adresBuiteland2" : {
+            "type" : "string"
+          },
+          "landnaam" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "adresBuiteland3" : "adresBuiteland3",
+          "adresBuiteland1" : "adresBuiteland1",
+          "adresBuiteland2" : "adresBuiteland2",
+          "landnaam" : "landnaam"
+        }
+      }
+    }
+  }
+}
