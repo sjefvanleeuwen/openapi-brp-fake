@@ -1,5 +1,5 @@
 # OpenAPI Fake BRP
-![travis build](https://travis-ci.com/sjefvanleeuwenopen/api-brp-fake.svg?branch=master)
+![travis build](https://travis-ci.com/sjefvanleeuwen/openapi-brp-fake.svg?branch=master)
 
 Provides an OpenAPI service that serves a fake BRP (Basisregistratie Personen) implementation. The implementation will generate fake addresses, names based on random seed derived from a BSN (Burger Service Nummer / Social Security Number).
 
