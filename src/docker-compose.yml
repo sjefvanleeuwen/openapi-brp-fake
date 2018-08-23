@@ -11,8 +11,8 @@ services:
   api:
     image:  openapi-brp-fake
     build:
-      context: ./Org.OpenAPITools
+      context: ./openapi-brp-fake
       dockerfile: Dockerfile
-    hostname: Org.OpenAPITools
+    hostname: openapi-brp-fake
     restart: always
     logging: *default-logging
