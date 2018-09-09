@@ -9,7 +9,7 @@ x-logging:
 
 services:
   api:
-    image:  openapi-brp-fake
+    image:  wigo4it/openapi-brp-fake
     build:
       context: ./openapi-brp-fake
       dockerfile: Dockerfile
