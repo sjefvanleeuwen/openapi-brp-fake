@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
+using App.Metrics.AspNetCore;
 
 namespace Org.OpenAPITools
 {
@@ -24,6 +25,7 @@ namespace Org.OpenAPITools
         /// <returns>Webhost</returns>
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseMetrics()
                 .UseStartup<Startup>()                
                 .UseUrls("http://0.0.0.0:8080/")
                 .Build();

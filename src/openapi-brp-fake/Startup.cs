@@ -60,6 +60,7 @@ namespace Org.OpenAPITools
                 });
 
             services
+                .AddMetrics()
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("1.0.0", new Info
