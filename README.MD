@@ -14,7 +14,7 @@ This fake BRP has some very basic functionality:
 
 * No Elf-Proof on BSN's
 * No valid date / ranges
-* Basic person information, no sibblings etc.
+* Basic person information, randomly creates partner
 * Basic address information
 * Currently the system is set statically to one municipality: Haarlem
 * No JWT Bearer tokens for auth.
