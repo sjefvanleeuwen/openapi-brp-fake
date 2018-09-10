@@ -27,7 +27,7 @@ namespace Org.OpenAPITools
             WebHost.CreateDefaultBuilder(args)
                 .UseMetrics()
                 .UseStartup<Startup>()                
-                .UseUrls("http://0.0.0.0:8080/")
+                .UseUrls("http://0.0.0.0:5080/")
                 .Build();
     }
 }
