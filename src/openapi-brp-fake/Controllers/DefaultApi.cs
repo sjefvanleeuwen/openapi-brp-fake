@@ -151,7 +151,28 @@ namespace Org.OpenAPITools.Controllers
                 example.AanduidingNaamgebruik = "E";
                 example.VoorletterAanschrijving = example.Voornamen[0].ToString();
 
+                // Has spouse
+                var isSpouse = (new Random(seed).Next(3) != 1);
+                if (isSpouse){
+                    example.Partner = new List<Persoon>();
+                    var partner = new Persoon();
+                    var partnerNaam = Fakes.GetRandomFirstName(seed+1);
+                    if (partnerNaam.geslacht){
+                        partner.Geslachtsaanduiding = "V";
+                        partner.Aanschrijfwijze = "mevrouw";
+                    }
+                    else
+                    {
+                        partner.Geslachtsaanduiding = "M";
+                        partner.Aanschrijfwijze = "de heer";
+                    }
+                    partner.Geboortedatum = DateTime.Now.AddDays(-7665-new Random(seed+1).Next(18250));
+                    partner.Voornamen = partnerNaam.voornaam;
+                    partner.VoorlettersAanschrijving = partner.Voornamen[0].ToString();
+                    partner.Geslachtsnaam = Fakes.GetRandomLastName(seed+1).achternaam;
 
+                    example.Partner.Add(partner);
+                }
                 return StatusCode(200, new ObjectResult(example));
             }
         }
