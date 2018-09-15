@@ -30,7 +30,7 @@ docker-compose up --build -d
 
 
 ```
-docker pull wigo4it/openapi-brp-fak
+docker pull wigo4it/openapi-brp-fake
 docker run -p 5080:8080 wigo4it/openapi-brp-fake
 ```
 The API can now be reached at:
