@@ -1,1 +1,1 @@
-DOTNET_STARTUP_PROJECT=/src/openapi-brp-fake/Org.OpenAPITools.csproj
+DOTNET_STARTUP_PROJECT=./src/openapi-brp-fake/Org.OpenAPITools.csproj
