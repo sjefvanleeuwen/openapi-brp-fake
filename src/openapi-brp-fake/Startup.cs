@@ -19,6 +19,8 @@ using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Org.OpenAPITools.Filters;
+using App.Metrics;
+using App.Metrics.Formatters.Prometheus;
 
 namespace Org.OpenAPITools
 {
@@ -59,8 +61,14 @@ namespace Org.OpenAPITools
                     });
                 });
 
+            var metrics = AppMetrics.CreateDefaultBuilder()
+                .OutputMetrics.AsPrometheusPlainText()
+            .Build();
+
+
             services
-                .AddMetrics()
+                .AddMetrics(metrics)
+                .AddMetricsEndpoints()
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("1.0.0", new Info
