@@ -9,13 +9,15 @@
     <PackageId>Org.OpenAPITools</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="2.0.0" />
-    <PackageReference Include="App.Metrics.Reporting.Console" Version="2.0.0" />
+    <PackageReference Include="App.Metrics.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="App.Metrics.AspNetCore.Mvc" Version="3.0.0" />
+    <PackageReference Include="App.Metrics.AspNetCore.Endpoints" Version="3.0.0" />
+    <PackageReference Include="App.Metrics.Formatters.Prometheus" Version="3.0.0" />
+    <PackageReference Include="App.Metrics.Reporting.Console" Version="3.0.0" />
     <PackageReference Include="CsvHelper" Version="7.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.2" />
   </ItemGroup>
   <ItemGroup>

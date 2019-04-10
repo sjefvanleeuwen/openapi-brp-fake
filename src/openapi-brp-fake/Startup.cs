@@ -61,14 +61,7 @@ namespace Org.OpenAPITools
                     });
                 });
 
-            var metrics = AppMetrics.CreateDefaultBuilder()
-                .OutputMetrics.AsPrometheusPlainText()
-            .Build();
-
-
             services
-                .AddMetrics(metrics)
-                .AddMetricsEndpoints()
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("1.0.0", new Info
